@@ -20,36 +20,21 @@ function parseVersion(err, response) {
         throw 'Could not read version from package.json. Is the file correctly formatted?';
     }
 
-    finishRelease(pkg.version);
+    version = pkg.version;
+
+    finishRelease(version);
 }
-
-
-// function bumpVersion(currentVersion, type) {
-//     var versionArray = currentVersion.split('.');
-
-//     if ( acceptedVersionBump.indexOf(type) === -1 ) {
-//         throw 'Bump only accepts major, minor or patch bump types, ' + type + ' was given';
-//     }
-
-//     versionArray[acceptedVersionBump.indexOf(type)]++;
-
-//     for( var i = acceptedVersionBump.indexOf(type)+1; i < acceptedVersionBump.length; i++ ) {
-//         versionArray[i] = 0;
-//     }
-
-//     return versionArray.join('.');
-// }
 
 
 function confirmWrite(err) {
     if ( err ) throw err;
 
-    // console.log('Saved! New version is: ', newVersion);
+    console.log('Woho, it worked!');
 }
 
 
-function finishRelease(version) {
-    exec('git-flow release finish ' + version, function(err, stdout, stderr) {
+function finishRelease(v) {
+    exec('git-flow release finish ' + v, function(err, stdout, stderr) {
         if (err) throw err;
 
         console.log(stdout);
