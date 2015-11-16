@@ -1,7 +1,7 @@
-Git flow release creator
+Git flow release finisher
 ===
 
-A small and simple Node CLI tool to create a new release branch, following the [git-flow workflow](http://nvie.com/posts/a-successful-git-branching-model/).
+A small and simple Node CLI tool to finish a release, following the [git-flow workflow](http://nvie.com/posts/a-successful-git-branching-model/).
 
 ## Installation
 
@@ -9,16 +9,14 @@ Clone this repo and run `npm link` in the root folder.
 
 This will create two CLI commands:
 
-- `create-release`
-- `cr`
+- `finish-release`
+- `fr`
 
-They both do the same thing, `cr` is just a shorter version.
+They both do the same thing, `fr` is just a shorter version.
 
 ## Usage
 
-`$ create-release [major|minor|patch]`
-
-If no release type is specified, a patch bump is performed.
+`$ finish-release`
 
 Git flow release creator assumes that you can run `git-flow` commands from your CLI.
 
