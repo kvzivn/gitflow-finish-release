@@ -2,6 +2,7 @@ Git flow release finisher
 ===
 
 A small and simple Node CLI tool to finish a release, following the [git-flow workflow](http://nvie.com/posts/a-successful-git-branching-model/).
+
 Based on [Git flow release creator](https://github.com/hmps/gitflow-release-next) by [@hmps](https://github.com/hmps).
 
 ## Installation
