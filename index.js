@@ -76,6 +76,8 @@ function finishRelease(v) {
 
                 console.log(stdout);
             });
+
+            console.log('Merged release branch into master & develop, deleted it and pushed everything.');
         }
     ]);
 }
