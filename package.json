@@ -1,5 +1,5 @@
 {
-  "name": "release-next",
+  "name": "finish-release",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,8 @@
     "minimist": "^1.2.0"
   },
   "bin": {
-    "create-release" : "index.js",
-    "cr" : "index.js"
+    "finish-release" : "index.js",
+    "fr" : "index.js"
   },
   "devDependencies": {},
   "scripts": {
@@ -17,6 +17,6 @@
   "keywords": [
     "git-flow"
   ],
-  "author": "Hampus Persson <h@hmps.se> (http://hmps.se/)",
+  "author": "Kevin Ivan <hello@kevinivan.com> (http://kevinivan.com/)",
   "license": "MIT"
 }
