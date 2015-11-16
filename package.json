@@ -1,16 +1,15 @@
 {
   "name": "finish-release",
   "version": "0.0.1",
-  "description": "",
+  "description": "Finish a release.",
   "main": "index.js",
   "dependencies": {
-    "minimist": "^1.2.0"
+    "async": "^1.5.0"
   },
   "bin": {
     "finish-release": "index.js",
     "fr": "index.js"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
