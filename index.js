@@ -5,17 +5,6 @@ var fs = require('fs');
 var exec = require('child_process').exec;
 
 var version;
-var bump = 'patch';
-var newVersion;
-
-var acceptedVersionBump = [ 'major', 'minor', 'patch' ];
-
-acceptedVersionBump.forEach(function(version) {
-    if ( argv._.indexOf(version) !== -1 ) {
-        bump = version;
-    }
-});
-
 
 fs.readFile('./package.json', 'utf8', parseVersion);
 
@@ -31,37 +20,36 @@ function parseVersion(err, response) {
         throw 'Could not read version from package.json. Is the file correctly formatted?';
     }
 
-    newVersion = bumpVersion(pkg.version, bump);
-
-    createNewReleaseBranch(newVersion);
+    finishRelease(pkg.version);
 }
 
-function bumpVersion(currentVersion, type) {
-    var versionArray = currentVersion.split('.');
 
-    if ( acceptedVersionBump.indexOf(type) === -1 ) {
-        throw 'Bump only accepts major, minor or patch bump types, ' + type + ' was given';
-    }
+// function bumpVersion(currentVersion, type) {
+//     var versionArray = currentVersion.split('.');
 
-    versionArray[acceptedVersionBump.indexOf(type)]++;
+//     if ( acceptedVersionBump.indexOf(type) === -1 ) {
+//         throw 'Bump only accepts major, minor or patch bump types, ' + type + ' was given';
+//     }
 
-    for( var i = acceptedVersionBump.indexOf(type)+1; i < acceptedVersionBump.length; i++ ) {
-        versionArray[i] = 0;
-    }
+//     versionArray[acceptedVersionBump.indexOf(type)]++;
 
-    return versionArray.join('.');
-}
+//     for( var i = acceptedVersionBump.indexOf(type)+1; i < acceptedVersionBump.length; i++ ) {
+//         versionArray[i] = 0;
+//     }
+
+//     return versionArray.join('.');
+// }
 
 
 function confirmWrite(err) {
     if ( err ) throw err;
 
-    console.log('Saved! New version is: ', newVersion);
+    // console.log('Saved! New version is: ', newVersion);
 }
 
 
-function createNewReleaseBranch(name) {
-    exec('git-flow release start ' + name, function(err, stdout, stderr) {
+function finishRelease(version) {
+    exec('git-flow release finish ' + version, function(err, stdout, stderr) {
         if (err) throw err;
 
         console.log(stdout);
