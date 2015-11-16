@@ -1,14 +1,14 @@
 {
   "name": "finish-release",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "minimist": "^1.2.0"
   },
   "bin": {
-    "finish-release" : "index.js",
-    "fr" : "index.js"
+    "finish-release": "index.js",
+    "fr": "index.js"
   },
   "devDependencies": {},
   "scripts": {
