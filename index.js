@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
-var argv = require('minimist')(process.argv.slice(2));
 var fs = require('fs');
+var async = require('async');
 var exec = require('child_process').exec;
 
 var version;
@@ -34,9 +34,50 @@ function confirmWrite(err) {
 
 
 function finishRelease(v) {
-    exec('git-flow release finish ' + v, function(err, stdout, stderr) {
-        if (err) throw err;
+    async.series([
+        function(){
+            exec('git checkout master', function(err, stdout, stderr) {
+                if (err) throw err;
 
-        console.log(stdout);
-    });
+                console.log(stdout);
+            });
+        },
+        function(){
+            exec('git merge --no-ff -m "Merge branch release/ "' + v, function(err, stdout, stderr) {
+                if (err) throw err;
+
+                console.log(stdout);
+            });
+        },
+        function(){
+            exec('git checkout develop', function(err, stdout, stderr) {
+                if (err) throw err;
+
+                console.log(stdout);
+            });
+        },
+        function(){
+            exec('git merge --no-ff -m "Merge branch release/ "' + v, function(err, stdout, stderr) {
+                if (err) throw err;
+
+                console.log(stdout);
+            });
+        },
+        function(){
+            exec('git branch -d release/' + v, function(err, stdout, stderr) {
+                if (err) throw err;
+
+                console.log(stdout);
+            });
+        },
+        function(){
+            exec('git push origin --all && git push origin --tags', function(err, stdout, stderr) {
+                if (err) throw err;
+
+                console.log(stdout);
+            });
+        }
+    ]);
 }
+
+
